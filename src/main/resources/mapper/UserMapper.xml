@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccyy.manage.dao.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ccyy.manage.model.entity.User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="nick_name" property="nickName" />
+        <result column="avatar" property="avatar" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="email" property="email" />
+        <result column="status" property="status" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="active_code" property="activeCode" />
+        <result column="dept_id" property="deptId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, username,nick_name,avatar, password, salt, email, status, last_login_time, create_time, modify_time, active_code, dept_id
+    </sql>
+
+    <select id="selectRoleNameByUserName" resultType="String" parameterType="String">
+        select role.role_name
+        from user,
+             role,
+             user_role
+        where user.id = user_role.user_id
+          and role.role_id = user_role.role_id
+          and user.username = #{username,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectOperatorPermsByUserName" resultType="String" parameterType="String">
+        select operator.perms
+        from user,
+             role,
+             user_role,
+             operator,
+             role_operator
+        where user.id = user_role.user_id
+          and role.role_id = user_role.role_id
+          and role.role_id = role_operator.role_id
+          and operator.operator_id = role_operator.operator_id
+          and user.username = #{username, jdbcType=VARCHAR}
+    </select>
+</mapper>

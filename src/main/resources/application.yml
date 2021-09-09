@@ -1,0 +1,33 @@
+server:
+  port: 18087
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+spring:
+  datasource:
+    url: jdbc:mysql://47.108.195.250:3306/ccyymanage?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 'Eating520..'
+ccyy:
+  jwt:
+#    加密密钥
+    secret: '0ee4XD0gXPz5znnh7xKEmjwyfdJd1m4C'
+#    token有效时长，七天，单位秒
+    expire: 604800
+    header: Authorization
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 47.108.195.250:6379

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccyy.manage.dao.OperatorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ccyy.manage.model.entity.Operator">
+        <id column="operator_id" property="operatorId" />
+        <result column="menu_id" property="menuId" />
+        <result column="operator_name" property="operatorName" />
+        <result column="url" property="url" />
+        <result column="perms" property="perms" />
+        <result column="http_method" property="httpMethod" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_time" property="modifyTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        operator_id, menu_id, operator_name, url, perms, http_method, create_time, modify_time
+    </sql>
+
+</mapper>
